@@ -1,0 +1,6 @@
+# W-Method
+This repository contains the development of W method calculation. W Method is used to optimize decision tree to solve multicriteria decision making. 
+
+Versioning History:
+1.0 - MAJOR : Additional of new W Method with simple logic
+2.0 - MAJOR : Additional null column to continuous itterations
