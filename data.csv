@@ -1,0 +1,35 @@
+id,criteria,branch,type,did,additionalPayoff,probabilityBranch,parent,RawPayoff
+1,moneter,cash,decision,1,0,,,
+2,moneter,credit,decision,2,50000000,,,
+3,moneter,Harga turun,event,,0,0.3,1,
+4,moneter,Asuransi tertanggung 3 tahun,event,,0,0.7,1,
+5,moneter,sedan,output,,0,0.4,3,200000000
+6,moneter,suv,output,,0,0.6,3,250000000
+7,moneter,sedan,output,,0,0.3,4,200000000
+8,moneter,suv,output,,0,0.7,4,250000000
+9,moneter,harga naik,event,,0,0.6,2,
+10,moneter,harga naik dan asuransi bertambah,event,,0,0.4,2,
+11,moneter,sedan,output,,0,0.45,9,200000000
+12,moneter,suv,output,,0,0.55,9,250000000
+13,moneter,sedan,output,,0,0.6,10,200000000
+14,moneter,suv,output,,0,0.4,10,250000000
+15,kenyamanan,sp banyak,decision,1,0,,,
+16,kenyamanan,sp sedikit,decision,2,0,,,
+17,kenyamanan,harga terjangkau,event,,40000000,0.75,15,
+18,kenyamanan,harga terjangkjau sparepart imitasi,event,,50000000,0.25,15,
+19,kenyamanan,sedan,output,,0,0.65,17,200000000
+20,kenyamanan,suv,output,,0,0.35,17,250000000
+21,kenyamanan,sedan,output,,0,0.53,18,200000000
+22,kenyamanan,suv,output,,0,0.47,18,250000000
+23,kenyamanan,sparepart original,event,,50000000,0.72,16,
+24,kenyamanan,sparepart original dan mahal,event,,70000000,0.28,16,
+25,kenyamanan,sedan,output,,0,0.66,23,200000000
+26,kenyamanan,suv,output,,0,0.34,23,250000000
+27,kenyamanan,sedan,output,,0,0.67,24,200000000
+28,kenyamanan,suv,output,,0,0.33,24,250000000
+29,performa,hybrid,decision,1,70000000,,,
+30,performa,non hybrid,decision,2,20000000,,,
+31,performa,sedan,output,,0,0.55,29,200000000
+32,performa,suv,output,,0,0.45,29,250000000
+33,performa,sedan,output,,0,0.45,30,200000000
+34,performa,suv,output,,0,0.55,30,250000000
