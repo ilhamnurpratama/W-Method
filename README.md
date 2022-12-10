@@ -2,14 +2,14 @@
 This repository contains the development of W method calculation. W Method is used to optimize decision tree to solve multicriteria decision making. 
 
 ## Versioning History:
-1.0 - MAJOR : Additional of new W Method with simple logic
-1.1 - MAJOR : Additional null column to continuous itterations
+- 2022-12-10 - 1.0 - MAJOR : Additional of new W Method with simple logic
+- 2022-12-10 - 1.1 - MAJOR : Additional null column to continuous itterations, finalize the singular decision tree method.
 
 ## How to use the repo:
 1. This repo use several file such as:
-	- W.py
-	- output.csv : use for inputing the output variable and the raw payoff of an output.
-	- Data.csv : the master data that is use for GUI to input event node, output, decision node, and branch probability
+	- **W.py**
+	- **output.csv** : use for inputing the output variable and the raw payoff of an output.
+	- **Data.csv** : the master data that is use for GUI to input event node, output, decision node, and branch probability
 2. After entering the value to **output.csv and Data.csv**, run the W.py.
 3. Enter the function for calculation, whether **maximize or minimization**.
 4. Enter the weight for each category based on criteria priority.
