@@ -1,35 +1,35 @@
-id,criteria,branch,type,did,additionalPayoff,probabilityBranch,parent,RawPayoff
-1,moneter,cash,decision,1,0,,,
-2,moneter,credit,decision,2,50000000,,,
-3,moneter,Harga turun,event,,0,0.3,1,
-4,moneter,Asuransi tertanggung 3 tahun,event,,0,0.7,1,
-5,moneter,sedan,output,,0,0.4,3,200000000
-6,moneter,suv,output,,0,0.6,3,250000000
-7,moneter,sedan,output,,0,0.3,4,200000000
-8,moneter,suv,output,,0,0.7,4,250000000
-9,moneter,harga naik,event,,0,0.6,2,
-10,moneter,harga naik dan asuransi bertambah,event,,0,0.4,2,
-11,moneter,sedan,output,,0,0.45,9,200000000
-12,moneter,suv,output,,0,0.55,9,250000000
-13,moneter,sedan,output,,0,0.6,10,200000000
-14,moneter,suv,output,,0,0.4,10,250000000
-15,kenyamanan,sp banyak,decision,1,0,,,
-16,kenyamanan,sp sedikit,decision,2,0,,,
-17,kenyamanan,harga terjangkau,event,,40000000,0.75,15,
-18,kenyamanan,harga terjangkjau sparepart imitasi,event,,50000000,0.25,15,
-19,kenyamanan,sedan,output,,0,0.65,17,200000000
-20,kenyamanan,suv,output,,0,0.35,17,250000000
-21,kenyamanan,sedan,output,,0,0.53,18,200000000
-22,kenyamanan,suv,output,,0,0.47,18,250000000
-23,kenyamanan,sparepart original,event,,50000000,0.72,16,
-24,kenyamanan,sparepart original dan mahal,event,,70000000,0.28,16,
-25,kenyamanan,sedan,output,,0,0.66,23,200000000
-26,kenyamanan,suv,output,,0,0.34,23,250000000
-27,kenyamanan,sedan,output,,0,0.67,24,200000000
-28,kenyamanan,suv,output,,0,0.33,24,250000000
-29,performa,hybrid,decision,1,70000000,,,
-30,performa,non hybrid,decision,2,20000000,,,
-31,performa,sedan,output,,0,0.55,29,200000000
-32,performa,suv,output,,0,0.45,29,250000000
-33,performa,sedan,output,,0,0.45,30,200000000
-34,performa,suv,output,,0,0.55,30,250000000
+id,criteria,cid,branch,type,did,oid,additionalPayoff,probabilityBranch,parent
+1,moneter,1,cash,decision,1,,0,,
+2,moneter,1,credit,decision,2,,50000000,,
+3,moneter,1,Harga turun,event,,,0,0.3,1
+4,moneter,1,Asuransi tertanggung 3 tahun,event,,,0,0.7,1
+5,moneter,1,sedan,output,,1,0,0.4,3
+6,moneter,1,suv,output,,2,0,0.6,3
+7,moneter,1,sedan,output,,1,0,0.3,4
+8,moneter,1,suv,output,,2,0,0.7,4
+9,moneter,1,harga naik,event,,,0,0.6,2
+10,moneter,1,harga naik dan asuransi bertambah,event,,,0,0.4,2
+11,moneter,1,sedan,output,,1,0,0.45,9
+12,moneter,1,suv,output,,2,0,0.55,9
+13,moneter,1,sedan,output,,1,0,0.6,10
+14,moneter,1,suv,output,,2,0,0.4,10
+15,kenyamanan,2,sp banyak,decision,1,,0,,
+16,kenyamanan,2,sp sedikit,decision,2,,0,,
+17,kenyamanan,2,harga terjangkau,event,,,40000000,0.75,15
+18,kenyamanan,2,harga terjangkjau sparepart imitasi,event,,,50000000,0.25,15
+19,kenyamanan,2,sedan,output,,1,0,0.65,17
+20,kenyamanan,2,suv,output,,2,0,0.35,17
+21,kenyamanan,2,sedan,output,,1,0,0.53,18
+22,kenyamanan,2,suv,output,,2,0,0.47,18
+23,kenyamanan,2,sparepart original,event,,,50000000,0.72,16
+24,kenyamanan,2,sparepart original dan mahal,event,,,70000000,0.28,16
+25,kenyamanan,2,sedan,output,,1,0,0.66,23
+26,kenyamanan,2,suv,output,,2,0,0.34,23
+27,kenyamanan,2,sedan,output,,1,0,0.67,24
+28,kenyamanan,2,suv,output,,2,0,0.33,24
+29,performa,3,hybrid,decision,1,,70000000,,
+30,performa,3,non hybrid,decision,2,,20000000,,
+31,performa,3,sedan,output,,1,0,0.55,29
+32,performa,3,suv,output,,2,0,0.45,29
+33,performa,3,sedan,output,,1,0,0.45,30
+34,performa,3,suv,output,,2,0,0.55,30
