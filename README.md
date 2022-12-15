@@ -4,8 +4,8 @@ This repository contains the development of W method calculation. W Method is us
 ## Versioning History:
 - 2022-12-10 - 1.0 - MAJOR : Additional of new W Method with simple logic
 - 2022-12-10 - 1.1 - MAJOR : Additional null column to continuous itterations, finalize the singular decision tree method.
-- 2022-12-12 - 1.2 - MAJOR : Additional options to query from database, additional function to select function to maximize or minimize, additional input rank to dataframe
-- 2022-12-13 - 
+- 2022-12-12 - 1.2 - MAJOR : Additional options to query from database, additional function to select function to maximize or minimize, additional input rank to dataframe.
+- 2022-12-13 - 1.3 - MAJOR : Penambahan rank sum atas nilai yang di masukan, final method W.
 
 ## How to use the repo:
 1. This repo use several file such as:

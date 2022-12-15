@@ -1,10 +1,12 @@
 # W Program 
 # Created by Ilham Nur Pratama - 2106663282
-# Version 1.2
+# Version 1.3
 
 # Module Used
 import pandas as pd
 import mysql.connector as sql
+import numpy as np
+
 '''
 # Open this command if want to use database
 # Database connection
@@ -73,14 +75,22 @@ mData['probabilityBranch'] = pd.to_numeric(mData['probabilityBranch'],errors='co
 notNullColumn = mData.loc[mData['parent'].notnull()]
 countCriteria = mData['criteria'].nunique()
 rBobot = []
+decisionArray = []
 
 # Inputs and Options
-fungsiMinMax = int(input("Enter the function that system will solve: (1=max, 2=min)"))
+# Input function min max
+fungsiMinMax = int(input("Enter the function that system will solve (1=max, 2=min): ") )
 print('Number of criterias: %i'%countCriteria)
 for i in cData['cid']:
     rankBobot = float(input('Enter the priority of %i criteria: '%i))
     rBobot.append(rankBobot)
 cData = cData.loc[:, 'rank'] = pd.DataFrame(rBobot, index=cData['cid'])
+
+# Input Decision
+filteredDid
+for i in mData['did']:
+    decisionChoosen = int(input("Enter your decision for decision #%i: "%i))
+    decisionArray.append(decisionChoosen)
 
 # Function Definition
 def maxDT():
