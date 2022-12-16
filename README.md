@@ -7,6 +7,7 @@ This repository contains the development of W method calculation. W Method is us
 - 2022-12-12 - 1.2 - MAJOR : Additional options to query from database, additional function to select function to maximize or minimize, additional input rank to dataframe.
 - 2022-12-13 - 1.2 - MINOR : Additional input decision used
 - 2022-12-16 - 1.2 - MINOR : bug fix about N/A value and additional elapsed calculation time
+- 2022-12-16 - 1.2 - MAJOR : Decision function working but still returning final branch that doesn't the output branch
 
 ## How to use the repo:
 1. This repo use several file such as:

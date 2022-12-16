@@ -7,6 +7,7 @@ import pandas as pd
 import mysql.connector as sql
 import numpy as np
 import time as tm
+import warnings
 
 '''
 # Open this command if want to use database
@@ -67,7 +68,8 @@ mData = mData.rename(columns = {'criteria_x':'criteria',
 print('W Method Program')
 print('Version 1.3')
 print('Group 7')
-print('Riset Operasi Lanjut - Teknik Industri S2UI')
+print('Advance Operation Research - Master of Industrial Engineering')
+print('University of Indonesia')
 print('====================================================================== \n')
 
 # Data Cleansing, Scrapping, query
@@ -75,8 +77,10 @@ mData['additionalPayoff'] = mData['additionalPayoff'].astype(float)
 mData['probabilityBranch'] = pd.to_numeric(mData['probabilityBranch'],errors='coerce')
 notNullColumn = mData.loc[mData['parent'].notnull()]
 countCriteria = mData['criteria'].nunique()
-rBobot = []
-decisionArray = []
+
+# List used
+rBobot = [] # Use to contain the rank data
+decisionArray = [] # Use to contain the decision data
 
 # Inputs and Options
 # Input function min max
@@ -95,6 +99,7 @@ for i in np.unique(mData['did']):
 
 # Function Definition
 def maxDT():
+    global mdf
     for i in notNullColumn:
         # Calculating Logic
         mData['expectedPayoff'] = mData['rawPayoff'] * mData['probabilityBranch']
@@ -125,16 +130,24 @@ def maxDT():
         mdf['finalPayoff_y'] = mdf['finalPayoff_y'].fillna(0)
         mdf['finalPayoff'] = mdf.apply(lambda x: x['finalPayoff_x'] + x['finalPayoff_y'],axis=1)
 
-        #drop duplicated column
+        # drop duplicated column
         mdf = mdf.drop(['finalPayoff_x',
                         'finalPayoff_y',
                         'parent_y',
                         'id_y',
                         'branch_y',
                         'type_y'],axis=1)
+
+        # rename error column
+        mdf = mdf.rename(columns = {'branch_x':'branch',
+'type_x':'type',
+'id_x':'id',
+'parent_x':'parent'})
+
     return(mdf)
 
 def minDT():
+    global mdf
     for i in notNullColumn:
         # Calculating Logic
         mData['expectedPayoff'] = mData['rawPayoff'] * mData['probabilityBranch']
@@ -175,12 +188,27 @@ def minDT():
                         'type_y'],axis=1)
     return(mdf)
 
+# Warning deletion
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning, module='pandas')
+warnings.filterwarnings("ignore", message="A value is trying to be set on a copy of a slice from a DataFrame", category=UserWarning)
+
 # Main Logic
-startTime = tm.time()
+startTime = tm.time() # Start computation time
+dfDecision = pd.DataFrame()
 if fungsiMinMax == 1:
     maxDT()
+    # Getting the max/min function based on decision choosen
+    for i,j in zip(np.unique(mData['did']),decisionArray):
+        if np.isnan(i):
+            continue
+        mdfDid = mdf[mdf['did'] == i]
+        mdfDid = mdfDid.reset_index()
+        mdfDidSelected = mdfDid[mdfDid.index == j]
+        dfDecision = dfDecision.append(mdfDidSelected, ignore_index = False)
 elif fungsiMinMax == 2:
     minDT()
-endTime = tm.time()
+endTime = tm.time() # Finish computation time
 processTime = endTime - startTime
 print('Time elapse for this calculation: ',processTime,' second')
