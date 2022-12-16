@@ -6,6 +6,7 @@
 import pandas as pd
 import mysql.connector as sql
 import numpy as np
+import time as tm
 
 '''
 # Open this command if want to use database
@@ -64,7 +65,7 @@ mData = mData.rename(columns = {'criteria_x':'criteria',
 
 # Application UI
 print('W Method Program')
-print('Version 1.2')
+print('Version 1.3')
 print('Group 7')
 print('Riset Operasi Lanjut - Teknik Industri S2UI')
 print('====================================================================== \n')
@@ -84,11 +85,11 @@ print('Number of criterias: %i'%countCriteria)
 for i in cData['cid']:
     rankBobot = float(input('Enter the priority of %i criteria: '%i))
     rBobot.append(rankBobot)
-cData = cData.loc[:, 'rank'] = pd.DataFrame(rBobot, index=cData['cid'])
 
 # Input Decision
-filteredDid
-for i in mData['did']:
+for i in np.unique(mData['did']):
+    if np.isnan(i):
+        continue
     decisionChoosen = int(input("Enter your decision for decision #%i: "%i))
     decisionArray.append(decisionChoosen)
 
@@ -131,6 +132,7 @@ def maxDT():
                         'id_y',
                         'branch_y',
                         'type_y'],axis=1)
+    return(mdf)
 
 def minDT():
     for i in notNullColumn:
@@ -171,9 +173,14 @@ def minDT():
                         'id_y',
                         'branch_y',
                         'type_y'],axis=1)
+    return(mdf)
 
 # Main Logic
+startTime = tm.time()
 if fungsiMinMax == 1:
     maxDT()
 elif fungsiMinMax == 2:
     minDT()
+endTime = tm.time()
+processTime = endTime - startTime
+print('Time elapse for this calculation: ',processTime,' second')

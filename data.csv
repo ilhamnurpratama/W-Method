@@ -1,6 +1,6 @@
 id,criteria,cid,branch,type,did,oid,additionalPayoff,probabilityBranch,parent
 1,moneter,1,cash,decision,1,,0,,
-2,moneter,1,credit,decision,2,,50000000,,
+2,moneter,1,credit,decision,1,,50000000,,
 3,moneter,1,Harga turun,event,,,0,0.3,1
 4,moneter,1,Asuransi tertanggung 3 tahun,event,,,0,0.7,1
 5,moneter,1,sedan,output,,1,0,0.4,3
@@ -13,7 +13,7 @@ id,criteria,cid,branch,type,did,oid,additionalPayoff,probabilityBranch,parent
 12,moneter,1,suv,output,,2,0,0.55,9
 13,moneter,1,sedan,output,,1,0,0.6,10
 14,moneter,1,suv,output,,2,0,0.4,10
-15,kenyamanan,2,sp banyak,decision,1,,0,,
+15,kenyamanan,2,sp banyak,decision,2,,0,,
 16,kenyamanan,2,sp sedikit,decision,2,,0,,
 17,kenyamanan,2,harga terjangkau,event,,,40000000,0.75,15
 18,kenyamanan,2,harga terjangkjau sparepart imitasi,event,,,50000000,0.25,15
@@ -27,8 +27,8 @@ id,criteria,cid,branch,type,did,oid,additionalPayoff,probabilityBranch,parent
 26,kenyamanan,2,suv,output,,2,0,0.34,23
 27,kenyamanan,2,sedan,output,,1,0,0.67,24
 28,kenyamanan,2,suv,output,,2,0,0.33,24
-29,performa,3,hybrid,decision,1,,70000000,,
-30,performa,3,non hybrid,decision,2,,20000000,,
+29,performa,3,hybrid,decision,3,,70000000,,
+30,performa,3,non hybrid,decision,3,,20000000,,
 31,performa,3,sedan,output,,1,0,0.55,29
 32,performa,3,suv,output,,2,0,0.45,29
 33,performa,3,sedan,output,,1,0,0.45,30
