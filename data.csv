@@ -1,35 +1,35 @@
 id,criteria,cid,branch,type,did,oid,additionalPayoff,probabilityBranch,parent
-1,moneter,1,cash,decision,1,,0,,
-2,moneter,1,credit,decision,1,,50000000,,
-3,moneter,1,Harga turun,event,,,0,0.3,1
-4,moneter,1,Asuransi tertanggung 3 tahun,event,,,0,0.7,1
-5,moneter,1,sedan,output,,1,0,0.4,3
-6,moneter,1,suv,output,,2,0,0.6,3
-7,moneter,1,sedan,output,,1,0,0.3,4
-8,moneter,1,suv,output,,2,0,0.7,4
-9,moneter,1,harga naik,event,,,0,0.6,2
-10,moneter,1,harga naik dan asuransi bertambah,event,,,0,0.4,2
-11,moneter,1,sedan,output,,1,0,0.45,9
-12,moneter,1,suv,output,,2,0,0.55,9
-13,moneter,1,sedan,output,,1,0,0.6,10
-14,moneter,1,suv,output,,2,0,0.4,10
-15,kenyamanan,2,sp banyak,decision,2,,0,,
-16,kenyamanan,2,sp sedikit,decision,2,,0,,
-17,kenyamanan,2,harga terjangkau,event,,,40000000,0.75,15
-18,kenyamanan,2,harga terjangkjau sparepart imitasi,event,,,50000000,0.25,15
-19,kenyamanan,2,sedan,output,,1,0,0.65,17
-20,kenyamanan,2,suv,output,,2,0,0.35,17
-21,kenyamanan,2,sedan,output,,1,0,0.53,18
-22,kenyamanan,2,suv,output,,2,0,0.47,18
-23,kenyamanan,2,sparepart original,event,,,50000000,0.72,16
-24,kenyamanan,2,sparepart original dan mahal,event,,,70000000,0.28,16
-25,kenyamanan,2,sedan,output,,1,0,0.66,23
-26,kenyamanan,2,suv,output,,2,0,0.34,23
-27,kenyamanan,2,sedan,output,,1,0,0.67,24
-28,kenyamanan,2,suv,output,,2,0,0.33,24
-29,performa,3,hybrid,decision,3,,70000000,,
-30,performa,3,non hybrid,decision,3,,20000000,,
-31,performa,3,sedan,output,,1,0,0.55,29
-32,performa,3,suv,output,,2,0,0.45,29
-33,performa,3,sedan,output,,1,0,0.45,30
-34,performa,3,suv,output,,2,0,0.55,30
+1,gaji,1,gross,decision,1,,0,,
+2,gaji,1,net,decision,1,,0,,
+3,gaji,1,thpBesar,event,,,0,0.6,1
+4,gaji,1,potonganBesar,event,,,0,0.4,1
+5,gaji,1,salaryA,output,,1,0,0.3,3
+6,gaji,1,salaryB,output,,2,0,0.7,3
+7,gaji,1,salaryA,output,,1,0,0.25,4
+8,gaji,1,salaryB,output,,2,0,0.75,4
+9,gaji,1,thpKecil,event,,,500000,0.4,2
+10,gaji,1,potonganKecil,event,,,0,0.6,2
+11,gaji,1,salaryA,output,,1,0,0.65,9
+12,gaji,1,salaryB,output,,2,0,0.45,9
+13,gaji,1,salaryA,output,,1,0,0.35,10
+14,gaji,1,salaryB,output,,2,0,0.75,10
+15,transport,2,public,decision,2,,-300000,,
+16,transport,2,private,decision,2,,-1000000,,
+17,transport,2,hematBiaya,event,,,0,0.7,15
+18,transport,2,harga terjangkjau sparepart imitasi,event,,,0,0.3,15
+19,transport,2,salaryA,output,,1,0,0.55,17
+20,transport,2,salaryB,output,,2,0,0.45,17
+21,transport,2,salaryA,output,,1,0,0.52,18
+22,transport,2,salaryB,output,,2,0,0.48,18
+23,transport,2,borosBiaya,event,,,0,0.74,16
+24,transport,2,kenyamananBaik,event,,,0,0.26,16
+25,transport,2,salaryA,output,,1,0,0.65,23
+26,transport,2,salaryB,output,,2,0,0.35,23
+27,transport,2,salaryA,output,,1,0,0.64,24
+28,transport,2,salaryB,output,,2,0,0.36,24
+29,jamKerja,3,fleksibel,decision,3,,200000,,
+30,jamKerja,3,fix,decision,3,,100000,,
+31,jamKerja,3,salaryA,output,,1,0,0.51,29
+32,jamKerja,3,salaryB,output,,2,0,0.49,29
+33,jamKerja,3,salaryA,output,,1,0,0.45,30
+34,jamKerja,3,salaryB,output,,2,0,0.55,30

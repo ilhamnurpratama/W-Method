@@ -70,7 +70,7 @@ print('Version 1.3')
 print('Group 7')
 print('Advance Operation Research - Master of Industrial Engineering')
 print('University of Indonesia')
-print('====================================================================== \n')
+print('==================================================================================================== \n')
 
 # Data Cleansing, Scrapping, query
 mData['additionalPayoff'] = mData['additionalPayoff'].astype(float)
@@ -85,9 +85,11 @@ decisionArray = [] # Use to contain the decision data
 # Inputs and Options
 # Input function min max
 fungsiMinMax = int(input("Enter the function that system will solve (1=max, 2=min): ") )
+filteredCriteria = mData[mData['type'] == 'decision']
 print('Number of criterias: %i'%countCriteria)
+print(filteredCriteria)
 for i in cData['cid']:
-    rankBobot = float(input('Enter the priority of %i criteria: '%i))
+    rankBobot = int(input('Enter the priority of %i criteria: '%i))
     rBobot.append(rankBobot)
 
 # Input Decision
@@ -100,6 +102,7 @@ for i in np.unique(mData['did']):
 # Function Definition
 def maxDT():
     global mdf
+    global mmdfValue
     for i in notNullColumn:
         # Calculating Logic
         mData['expectedPayoff'] = mData['rawPayoff'] * mData['probabilityBranch']
@@ -124,8 +127,10 @@ def maxDT():
         nullRows_value = nullRows_value.reset_index()
         nullRows_value = nullRows_value.set_index(nullRows_value['parent'])
         
+        #mdf = pd.merge(mData,nullRows_value,left_index=True,right_index=True,how='outer')
+        
         # Merge dataframe
-        mdf = pd.merge(mData,nullRows_value,left_index=True,right_index=True,how='outer')
+        mdf = pd.merge(mData,nullRows_value,left_index=True, right_on= 'id' , how='outer')
         mdf['finalPayoff_x'] = mdf['finalPayoff_x'].fillna(0)
         mdf['finalPayoff_y'] = mdf['finalPayoff_y'].fillna(0)
         mdf['finalPayoff'] = mdf.apply(lambda x: x['finalPayoff_x'] + x['finalPayoff_y'],axis=1)
@@ -136,22 +141,66 @@ def maxDT():
                         'parent_y',
                         'id_y',
                         'branch_y',
-                        'type_y'],axis=1)
+                        'type_y'
+                        ,'id_x'],axis=1)
 
         # rename error column
         mdf = mdf.rename(columns = {'branch_x':'branch',
 'type_x':'type',
-'id_x':'id',
 'parent_x':'parent'})
 
-    return(mdf)
+        # Final Merge
+        mmdf = mdf.merge(mdf, left_on='id', right_on='parent', how='inner')
+        mmdf['finalBranch'] = mmdf['finalBranch_y'].fillna(mmdf['finalBranch_x'])
+        mmdf['finalPayoff'] = mmdf['expectedPayoff_y'].fillna(mmdf['finalPayoff_y'])
+    
+        # Final drop duplicated column
+        mmdf = mmdf.drop(['id_y',
+        'cid_y',
+        'oid_x',
+        'criteria_y',
+        'branch_y',
+        'type_y',
+        'did_y',
+        'additionalPayoff_y',
+        'parent_x',
+        'finalBranch_x',
+        'finalBranch_y',
+        'finalPayoff_x',
+        'finalPayoff_y',
+        'probabilityBranch_x',
+        'rawPayoff_x',
+        'rank_x',
+        'expectedPayoff_x',
+        'oid_y',
+        'rank_y',
+        'expectedPayoff_y'],axis=1)
+        
+        # Final rename column
+        mmdf = mmdf.rename(columns={'id_x':'id',
+        'cid_x':'cid',
+        'criteria_x':'criteria',
+        'branch_x':'branch',
+        'type_x':'type',
+        'did_x':'did',
+        'additionalPayoff_x':'additionalPayoff',
+        'probabilityBranch_y':'probabilityBranch',
+        'parent_y':'parent',
+        'rawPayoff_y':'rawPayoff'})
 
+        mmdfValue = mmdf.groupby(['branch','did'])['id','additionalPayoff','finalPayoff','finalBranch'].max()
+        mmdfValue = mmdfValue.reset_index()
+        
+    return(mmdfValue)
+    
 def minDT():
     global mdf
+    global mmdfValue
     for i in notNullColumn:
         # Calculating Logic
         mData['expectedPayoff'] = mData['rawPayoff'] * mData['probabilityBranch']
         mData['finalPayoff'] = mData['expectedPayoff'] + mData['additionalPayoff']
+    
         
         # Grouping Logic
         mData_value = mData.groupby(['type','parent'])['id','finalPayoff','branch'].min()
@@ -160,7 +209,6 @@ def minDT():
         mData['finalPayoff']=(mData_value['finalPayoff'])
         mData['finalBranch']=(mData_value['branch'])
         
-          
         # null Value calculation
         nullRows = mData.loc[mData['parent'].notnull()]
         
@@ -173,26 +221,93 @@ def minDT():
         nullRows_value = nullRows_value.reset_index()
         nullRows_value = nullRows_value.set_index(nullRows_value['parent'])
         
+        #mdf = pd.merge(mData,nullRows_value,left_index=True,right_index=True,how='outer')
+        
         # Merge dataframe
-        mdf = pd.merge(mData,nullRows_value,left_index=True,right_index=True,how='outer')
+        mdf = pd.merge(mData,nullRows_value,left_index=True, right_on= 'id' , how='outer')
         mdf['finalPayoff_x'] = mdf['finalPayoff_x'].fillna(0)
         mdf['finalPayoff_y'] = mdf['finalPayoff_y'].fillna(0)
         mdf['finalPayoff'] = mdf.apply(lambda x: x['finalPayoff_x'] + x['finalPayoff_y'],axis=1)
 
-        #drop duplicated column
+        # drop duplicated column
         mdf = mdf.drop(['finalPayoff_x',
                         'finalPayoff_y',
                         'parent_y',
                         'id_y',
                         'branch_y',
-                        'type_y'],axis=1)
-    return(mdf)
+                        'type_y'
+                        ,'id_x'],axis=1)
+
+        # rename error column
+        mdf = mdf.rename(columns = {'branch_x':'branch',
+'type_x':'type',
+'parent_x':'parent'})
+        
+
+        # Final Merge
+        mmdf = mdf.merge(mdf, left_on='id', right_on='parent', how='inner')
+        mmdf['finalBranch'] = mmdf['finalBranch_y'].fillna(mmdf['finalBranch_x'])
+        mmdf['finalPayoff'] = mmdf['expectedPayoff_y'].fillna(mmdf['finalPayoff_y'])
+        
+        # Final drop duplicated column
+        mmdf = mmdf.drop(['id_y',
+        'cid_y',
+        'oid_x',
+        'criteria_y',
+        'branch_y',
+        'type_y',
+        'did_y',
+        'additionalPayoff_y',
+        'parent_x',
+        'finalBranch_x',
+        'finalBranch_y',
+        'finalPayoff_x',
+        'finalPayoff_y',
+        'probabilityBranch_x',
+        'rawPayoff_x',
+        'rank_x',
+        'expectedPayoff_x',
+        'oid_y',
+        'rank_y',
+        'expectedPayoff_y'],axis=1)
+        
+        # Final rename column
+        mmdf = mmdf.rename(columns={'id_x':'id',
+        'cid_x':'cid',
+        'criteria_x':'criteria',
+        'branch_x':'branch',
+        'type_x':'type',
+        'did_x':'did',
+        'additionalPayoff_x':'additionalPayoff',
+        'probabilityBranch_y':'probabilityBranch',
+        'parent_y':'parent',
+        'rawPayoff_y':'rawPayoff'})
+
+        mmdfValue = mmdf.groupby(['branch','did'])['id','additionalPayoff','finalPayoff','finalBranch'].min()
+        mmdfValue = mmdfValue.reset_index()
+        
+    return(mmdfValue)
+    
+    
+def rsw(jumlahKriteria, rank):
+    sum = 0
+    for k in rank:
+        sum += (jumlahKriteria - k + 1)
+
+    # Calculate the result of the expression for each value of r_j
+    results = []
+    for j in rank:
+        result = (jumlahKriteria - j + 1) / sum
+        results.append(result)
+
+    return results
+
 
 # Warning deletion
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 warnings.filterwarnings("ignore", category=UserWarning, module='pandas')
-warnings.filterwarnings("ignore", message="A value is trying to be set on a copy of a slice from a DataFrame", category=UserWarning)
 
 # Main Logic
 startTime = tm.time() # Start computation time
@@ -200,15 +315,64 @@ dfDecision = pd.DataFrame()
 if fungsiMinMax == 1:
     maxDT()
     # Getting the max/min function based on decision choosen
-    for i,j in zip(np.unique(mData['did']),decisionArray):
+    # Getting the max/min function based on decision choosen
+    for i,j in zip(np.unique(mmdfValue['did']),decisionArray):
         if np.isnan(i):
             continue
-        mdfDid = mdf[mdf['did'] == i]
-        mdfDid = mdfDid.reset_index()
-        mdfDidSelected = mdfDid[mdfDid.index == j]
-        dfDecision = dfDecision.append(mdfDidSelected, ignore_index = False)
+        mmdfDid = mmdfValue[mmdfValue['did'] == i]
+        mmdfDid = mmdfDid.reset_index()
+        mmdfDidSelected = mmdfDid[mmdfDid.index == j]
+        dfDecision = dfDecision.append(mmdfDidSelected, ignore_index = False)
+    print('\nFINAL RESULT')
+    print('\n====================================================================================================')
+    print(dfDecision)
+    print('====================================================================================================')
+
+    # Rank Sum Generation
+    rswResult = rsw(countCriteria,rBobot)
+
+    # Finding majority of questions
+    majorityQuestion = dfDecision['finalBranch'].mode()[0]
+    
+    # Final Payoff Calculation
+    sumFinalPayoff = 0
+    for i,j in zip(rswResult,dfDecision['finalPayoff']):
+        finalPayoff = i*j
+        sumFinalPayoff += finalPayoff
+    print('Final Decision Suggested: ',majorityQuestion)
+    print('Final Result of Calculation: ',sumFinalPayoff)
+    print('====================================================================================================')
+    
 elif fungsiMinMax == 2:
     minDT()
+    # Getting the max/min function based on decision choosen
+    for i,j in zip(np.unique(mmdfValue['did']),decisionArray):
+        if np.isnan(i):
+            continue
+        mmdfDid = mmdfValue[mmdfValue['did'] == i]
+        mmdfDid = mmdfDid.reset_index()
+        mmdfDidSelected = mmdfDid[mmdfDid.index == j]
+        dfDecision = dfDecision.append(mmdfDidSelected, ignore_index = False)
+    print('\nFINAL RESULT')
+    print('\n====================================================================================================')
+    print(dfDecision)
+    print('====================================================================================================')
+
+    # Rank Sum Generation
+    rswResult = rsw(countCriteria,rBobot)
+
+    # Finding majority of questions
+    majorityQuestion = dfDecision['finalBranch'].mode()[0]
+    
+    # Final Payoff Calculation
+    sumFinalPayoff = 0
+    for i,j in zip(rswResult,dfDecision['finalPayoff']):
+        finalPayoff = i*j
+        sumFinalPayoff += finalPayoff
+    print('Final Decision Suggested: ',majorityQuestion)
+    print('Final Result of Calculation: ',sumFinalPayoff)
+    print('====================================================================================================')
+
 endTime = tm.time() # Finish computation time
 processTime = endTime - startTime
-print('Time elapse for this calculation: ',processTime,' second')
+print('Time elapse for this calculation: %.3f'%processTime,' seconds \n')
