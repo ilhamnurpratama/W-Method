@@ -9,7 +9,7 @@ import pandas as pd
 startTime = tm.time() # Start computation time
 def minDT():    
         # Define the data for the decision tree
-        data = {'choice': ['salaryA', 'salaryB','salaryA','salaryB'],
+        data = {'choice': ['sedan', 'suv','sedan','suv'],
                 'payoff': [200, 250,200,250],
                 'probability': [0.55, 0.45,0.45,0.55]}
         df = pd.DataFrame(data)
@@ -27,7 +27,7 @@ def minDT():
         # Define the 2 data for the decision tree **DECISION
         data2 = {'choice': ['hybrid', 'nonHybrid'],
                 'payoff': [112.5+70, min_expected_payoff+20],
-                'probability': [1,0]}
+                'probability': [0,1]}
         df2 = pd.DataFrame(data2)
 
         # Calculate the expected payoff for each choice
@@ -65,7 +65,7 @@ def minDT():
         # Define the 5 data for the decision tree **DECISION
         data5 = {'choice': ['spBanyak','spSedikit'],
                 'payoff': [min_expected_payoff4,min_expected_payoff4],
-                'probability': [0,1]}
+                'probability': [1,0]}
         df5 = pd.DataFrame(data5)
 
         # Calculate the expected payoff for each choice
@@ -108,7 +108,7 @@ def minDT():
         # Define the 8 data for the decision tree **DECISION
         data8 = {'choice': ['cash','credit'],
                 'payoff': [min_expected_payoff6,min_expected_payoff6+90],
-                'probability': [1,0]}
+                'probability': [0,1]}
         df8 = pd.DataFrame(data8)
 
         # Calculate the expected payoff for each choice
@@ -126,7 +126,7 @@ def minDT():
 
 def maxDT():
         # Define the data for the decision tree
-        data = {'choice': ['salaryA', 'salaryB','salaryA','salaryB'],
+        data = {'choice': ['sedan', 'suv','sedan','suv'],
                 'payoff': [10, 15,10,15],
                 'probability': [0.55, 0.45,0.45,0.55]}
         df = pd.DataFrame(data)
@@ -144,7 +144,7 @@ def maxDT():
         # Define the 2 data for the decision tree **DECISION
         data2 = {'choice': ['hybrid', 'nonHybrid'],
                 'payoff': [112.5+70, max_expected_payoff+20],
-                'probability': [1,0]}
+                'probability': [0,1]}
         df2 = pd.DataFrame(data2)
 
         # Calculate the expected payoff for each choice
@@ -182,7 +182,7 @@ def maxDT():
         # Define the 5 data for the decision tree **DECISION
         data5 = {'choice': ['spBanyak','spSedikit'],
                 'payoff': [max_expected_payoff4,max_expected_payoff4],
-                'probability': [0,1]}
+                'probability': [1,0]}
         df5 = pd.DataFrame(data5)
 
         # Calculate the expected payoff for each choice
@@ -225,7 +225,7 @@ def maxDT():
         # Define the 8 data for the decision tree **DECISION
         data8 = {'choice': ['cash','credit'],
                 'payoff': [max_expected_payoff6,max_expected_payoff6+90],
-                'probability': [1,0]}
+                'probability': [0,1]}
         df8 = pd.DataFrame(data8)
 
         # Calculate the expected payoff for each choice

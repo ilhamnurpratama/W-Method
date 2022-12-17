@@ -9,6 +9,7 @@ This repository contains the development of W method calculation. W Method is us
 - 2022-12-16 - 1.2 - MINOR : bug fix about N/A value and additional elapsed calculation time
 - 2022-12-16 - 1.2 - MAJOR : Decision function working but still returning final branch that doesn't the output branch
 - 2022-12-17 - 1.3 - MAJOR : Fully working W Method
+- 2022-12-17 - 1.3 - MINOR : Adjusted case study
 
 ## How to use the repo:
 1. This repo use several file such as:

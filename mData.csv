@@ -1,0 +1,29 @@
+,id,cid,criteria,branch,type,did,additionalPayoff,probabilityBranch,parent,rawPayoff,finalBranch,finalPayoff
+0,1,1,moneter,cash,decision,1.0,0.0,0.3,1.0,,suv,150000000.0
+1,1,1,moneter,cash,decision,1.0,0.0,0.7,1.0,,suv,297500000.0
+2,2,1,moneter,credit,decision,1.0,50000000.0,0.6,2.0,,suv,137500000.0
+3,2,1,moneter,credit,decision,1.0,50000000.0,0.4,2.0,,suv,202500000.0
+4,3,1,moneter,Harga turun,event,,0.0,0.4,3.0,200000000.0,suv,80000000.0
+5,3,1,moneter,Harga turun,event,,0.0,0.6,3.0,250000000.0,suv,150000000.0
+6,4,1,moneter,Asuransi tertanggung 3 tahun,event,,0.0,0.3,4.0,200000000.0,suv,60000000.0
+7,4,1,moneter,Asuransi tertanggung 3 tahun,event,,0.0,0.7,4.0,250000000.0,suv,175000000.0
+8,9,1,moneter,harga naik,event,,0.0,0.45,9.0,200000000.0,suv,90000000.0
+9,9,1,moneter,harga naik,event,,0.0,0.55,9.0,250000000.0,suv,137500000.0
+10,10,1,moneter,harga naik dan asuransi bertambah,event,,0.0,0.6,10.0,200000000.0,suv,120000000.0
+11,10,1,moneter,harga naik dan asuransi bertambah,event,,0.0,0.4,10.0,250000000.0,suv,100000000.0
+12,15,2,kenyamanan,sp banyak,decision,2.0,0.0,0.75,15.0,,suv,130000000.0
+13,15,2,kenyamanan,sp banyak,decision,2.0,0.0,0.25,15.0,,suv,255000000.0
+14,16,2,kenyamanan,sp sedikit,decision,2.0,0.0,0.72,16.0,,suv,132000000.0
+15,16,2,kenyamanan,sp sedikit,decision,2.0,0.0,0.28,16.0,,suv,279040000.0
+16,17,2,kenyamanan,harga terjangkau,event,,40000000.0,0.65,17.0,200000000.0,suv,130000000.0
+17,17,2,kenyamanan,harga terjangkau,event,,40000000.0,0.35,17.0,250000000.0,suv,87500000.0
+18,18,2,kenyamanan,harga terjangkjau sparepart imitasi,event,,50000000.0,0.53,18.0,200000000.0,suv,106000000.0
+19,18,2,kenyamanan,harga terjangkjau sparepart imitasi,event,,50000000.0,0.47,18.0,250000000.0,suv,117500000.0
+20,23,2,kenyamanan,sparepart original,event,,50000000.0,0.66,23.0,200000000.0,suv,132000000.0
+21,23,2,kenyamanan,sparepart original,event,,50000000.0,0.34,23.0,250000000.0,suv,85000000.0
+22,24,2,kenyamanan,sparepart original dan mahal,event,,70000000.0,0.67,24.0,200000000.0,suv,134000000.00000001
+23,24,2,kenyamanan,sparepart original dan mahal,event,,70000000.0,0.33,24.0,250000000.0,suv,82500000.0
+24,29,3,performa,hybrid,decision,3.0,70000000.0,0.55,29.0,200000000.0,suv,110000000.00000001
+25,29,3,performa,hybrid,decision,3.0,70000000.0,0.45,29.0,250000000.0,suv,112500000.0
+26,30,3,performa,non hybrid,decision,3.0,20000000.0,0.45,30.0,200000000.0,suv,90000000.0
+27,30,3,performa,non hybrid,decision,3.0,20000000.0,0.55,30.0,250000000.0,suv,137500000.0
